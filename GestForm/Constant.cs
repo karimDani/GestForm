@@ -14,9 +14,4 @@ public static class Constant
     /// The form label
     /// </summary>
     public const string FormLabel = "Form";
-
-    /// <summary>
-    /// The geste form label
-    /// </summary>
-    public const string GesteFormLabel = "Gestform";
 }

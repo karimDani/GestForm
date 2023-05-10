@@ -6,10 +6,10 @@
 public static class GestFormService
 {
     /// <summary>
-    /// Generates the random number.
+    /// Generate  Random List
     /// </summary>
     /// <returns>IEnumerable<int></returns>
-    public static IEnumerable<int> GenerateRandomNumber()
+    public static IEnumerable<int> GenerateRandomList()
     {
         List<int> numbers = new();
         for (int i = 0; i < 10; i++)
@@ -19,23 +19,35 @@ public static class GestFormService
         return numbers;
     }
 
+
     /// <summary>
     /// Writes the label.
     /// </summary>
     /// <param name="number">The number.</param>
     /// <returns>string</returns>
-    public static string WriteLabel(int number) => (number % 3) switch
+    public static string WriteLabel(int number)
     {
-        0 => number % 5 == 0 ? string.Concat(Constant.GestLabel, "\n", Constant.GesteFormLabel) : Constant.GestLabel,
-        _ => number % 5 == 0 ? Constant.FormLabel : number.ToString(),
-    };
+        string result = string.Empty;
+
+        if (number % 3 == 0)
+        {
+            result += Constant.GestLabel;
+        }
+
+        if (number % 5 == 0)
+        {
+            result += Constant.FormLabel;
+        }
+
+        return string.IsNullOrWhiteSpace(result) ? number.ToString() : result;
+    }
 
     /// <summary>
     /// Runs this instance.
     /// </summary>
     public static void Run()
     {
-        IEnumerable<int> numbers = GenerateRandomNumber();
+        IEnumerable<int> numbers = GenerateRandomList();
         if (numbers is not null && numbers.Any())
         {
             numbers.ToList().ForEach(number => Console.WriteLine(WriteLabel(number)));

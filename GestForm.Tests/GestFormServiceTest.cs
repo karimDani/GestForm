@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace GestForm.Tests;
@@ -16,7 +17,7 @@ public class GestFormServiceTest
     [Theory]
     [InlineData(486, "Gest")]
     [InlineData(430, "Form")]
-    [InlineData(15, "Gest\nGestform")]
+    [InlineData(15, "GestForm")]
     [InlineData(838, "838")]
     public void WriteLabelTest(int number, string label)
     {
@@ -32,9 +33,11 @@ public class GestFormServiceTest
     [Fact]
     public void GenerateRandomListTest()
     {
-        IEnumerable<int> numbers = GestFormService.GenerateRandomNumber();
+        IEnumerable<int> numbers = GestFormService.GenerateRandomList();
         Assert.NotNull(numbers);
         Assert.NotEmpty(numbers);
+        Assert.True(numbers.Min() >= -1000);
+        Assert.True(numbers.Max() <= 1000);
     }
 
     /// <summary>
